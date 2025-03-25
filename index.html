@@ -1,28 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vitqst</title>
-    
-    <!-- GitHub Calendar CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <!-- GitHub Calendar Container -->
+    <!-- Codeium Profile Container -->
     <div class="bag fixed">
-        <div class="calendar"></div>
+        <div id="profile-content" style="display: flex; align-items: center; justify-content: center;">
+            <img class="spinner" src="https://i.imgur.com/S7aOFqT.gif" alt="Loading...">
+        </div>
+        <div id="language-content">
+            <img class="spinner" src="https://i.imgur.com/S7aOFqT.gif" alt="Loading...">
+        </div>
+
+        <div>
+            <a href="https://wakatime.com/@vitqst"></a>
+        </div>
     </div>
-    
-    <!-- Polyfills for older browsers -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/3.0.2/es6-promise.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js"></script>
-    
-    <!-- GitHub Calendar Library -->
-    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
+    <script>
+        // Attempt to fetch the profile
+        fetch('https://wakatime.com/share/@vitqst/b29f2dbe-43f0-4856-bcfe-3f204744da2a.svg')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('profile-content').innerHTML = data;
+            })
+            .catch(error => {
+                document.getElementById('profile-content').innerHTML =
+                    `<p>Unable to load profile: ${error.message}</p>
+                     <p>Direct link: <a href="https://codeium.com/profile/vitqst-public-profile-settings" target="_blank">
+                        https://codeium.com/profile/vitqst-public-profile-settings
+                     </a></p>`;
+            });
+
+        // For the language content https://wakatime.com/share/@vitqst/cbbaca2e-7472-479b-8a06-f2d3eb60ca13.svg
+        fetch('https://wakatime.com/share/@vitqst/cbbaca2e-7472-479b-8a06-f2d3eb60ca13.svg')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('language-content').innerHTML = data;
+            })
+            .catch(error => {
+                document.getElementById('language-content').innerHTML =
+                    `<p>Unable to load profile: ${error.message}</p>
+                     <p>Direct link: <a href="https://codeium.com/profile/vitqst-public-profile-settings" target="_blank">
+                        https://codeium.com/profile/vitqst-public-profile-settings
+                     </a></p>`;
+            });
+
+        // Add a click event listener to the profile content
+    </script>
 </body>
+
 </html>
